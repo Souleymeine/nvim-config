@@ -25,7 +25,3 @@ vim.diagnostic.config({
 	virtual_text = true
 })
 
-
--- Set default shell for terminal
-vim.cmd("set shell=/usr/bin/fish")
-
