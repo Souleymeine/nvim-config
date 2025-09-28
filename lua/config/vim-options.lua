@@ -10,8 +10,14 @@ vim.cmd("set numberwidth=2")
 -- Show error, warning or breakpoint in line number column if there is one
 vim.cmd("set signcolumn=number")
 
--- From https://jeffkreeftmeijer.com/vim-number/
 -- For the syntax, try `:h vim.cmd`
+vim.cmd([[
+	augroup formatonsave
+		autocmd!
+		autocmd BufWriteCmd * lua vim.lsp.buf.format()
+	augroup END
+]])
+-- From https://jeffkreeftmeijer.com/vim-number/
 vim.cmd([[
 	augroup numbertoggle
 		autocmd!
@@ -24,4 +30,3 @@ vim.diagnostic.config({
 	update_in_insert = false,
 	virtual_text = true
 })
-
