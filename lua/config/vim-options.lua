@@ -14,7 +14,7 @@ vim.cmd("set signcolumn=number")
 vim.cmd([[
 	augroup formatonsave
 		autocmd!
-		autocmd BufWritePost * lua vim.lsp.buf.format()
+		autocmd BufWritePost * silent lua vim.lsp.buf.format()
 	augroup END
 ]])
 -- From https://jeffkreeftmeijer.com/vim-number/
