@@ -20,7 +20,6 @@ return {
 		-- dapui actions
 		local open_ui = function()
 			dapui.open()
-			vim.cmd("Neotree close")
 		end
 
 		dap.listeners.before.attach.dapui_config = open_ui
