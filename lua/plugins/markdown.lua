@@ -1,7 +1,6 @@
 return { "MeanderingProgrammer/render-markdown.nvim",
 	config = function ()
 		require("render-markdown").setup({
-			completions = { lsp = { enabled = true } },
 			code = {
 				-- Determines how code blocks & inline code are rendered.
 				-- | none     | disables all rendering                                                    |

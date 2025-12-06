@@ -4,11 +4,9 @@ return {
 	{	"mcauley-penney/visual-whitespace.nvim",
 		priority = -1,
 		config = function()
-			-- Make the background characters match the current color theme
-			-- I have no idea how I came up with this, but I did...
-			local default_highlight = string.format("#%X", vim.api.nvim_get_hl(0, { name = "Visual" }).bg)
-			vim.api.nvim_set_hl(0, "VisualNonText", { fg = "#555555", bg = default_highlight})
-			vim.api.nvim_set_hl(0, "Constant", { fg = "#CC66EE", bg = ""})
+			-- Use default theme bg color for VisualNonText bg
+			local theme_bg_hl = vim.api.nvim_get_hl(0, { name = "Visual" }).bg
+			vim.api.nvim_set_hl(0, "VisualNonText", { fg = string.format("#%06X", theme_bg_hl + 0x111111), bg = string.format("#%06X", theme_bg_hl) })
 		end
 	},
 	{	"lukas-reineke/indent-blankline.nvim",

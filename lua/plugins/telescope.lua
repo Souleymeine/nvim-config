@@ -4,12 +4,14 @@ return {
 		config = function ()
 			local telescope = require("telescope")
 			telescope.setup {
+				defaults = {
+					borderchars = { '─', '│', '─', '│', '┌', '┐', '┘', '└' }
+				},
 				extensions = {
 					["ui-select"] = { require("telescope.themes").get_dropdown({}) }
-				}
+				},
 			}
 			telescope.load_extension("ui-select")
-			telescope.load_extension("lazygit")
 		end
 	},
 	{ "nvim-telescope/telescope.nvim", branch = "0.1.x",

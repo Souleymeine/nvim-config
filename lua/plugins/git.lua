@@ -17,6 +17,10 @@ return {
 	-- order to load the plugin when the command is run for the first time
 	keys = {
 		{ "<leader>lg", "<cmd>LazyGit<cr>", desc = "LazyGit" }
-	}
+	},
+	config = function()
+		vim.g.lazygit_floating_window_border_chars = {'┌','─', '┐', '│', '┘','─', '└', '│'}
+		require("telescope").load_extension("lazygit")
+	end
 }
 

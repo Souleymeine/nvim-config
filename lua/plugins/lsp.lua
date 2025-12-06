@@ -1,7 +1,7 @@
 return {
 	{
 		"mason-org/mason-lspconfig.nvim",
-		-- ft = { "c", "s", "cpp", "rs", "sh", "py", "lua" },
+		-- ft = { "c", "s", "zig", "js", "ts", "cpp", "rs", "sh", "py", "lua" },
 		opts = {},
 		event = "InsertEnter",
 		dependencies = {
@@ -46,9 +46,11 @@ return {
 		config = function()
 			local cmp = require("cmp")
 			cmp.setup({
-				-- performance = {
-				-- 	max_view_entries = 10,
-				-- },
+				window = {
+					completion = {
+						max_height = 5
+					}
+				},
 				snippet = {
 					expand = function(args)
 						require('luasnip').lsp_expand(args.body)

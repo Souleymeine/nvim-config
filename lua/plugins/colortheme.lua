@@ -1,9 +1,7 @@
 return {
-	"EdenEast/nightfox.nvim",
+	"dasupradyumna/midnight.nvim", lazy = false, priority = 1000,
 	config = function()
-		-- The theme must be set while the plugin is loaded
-		-- For first installs or reinstalls, to avoid errors.
-		vim.cmd("colorscheme carbonfox")
+		vim.cmd("colorscheme midnight")
 	end
 }
 
