@@ -48,8 +48,8 @@ return {
 			cmp.setup({
 				window = {
 					completion = {
-						max_height = 5
-					}
+						max_height = 5,
+					},
 				},
 				snippet = {
 					expand = function(args)
