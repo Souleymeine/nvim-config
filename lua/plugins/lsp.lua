@@ -35,6 +35,7 @@ return {
 		"mfussenegger/nvim-jdtls",
 		ft = { "java" },
 	},
+	{ "ziglang/zig.vim" },
 	{ "windwp/nvim-autopairs", event = "InsertEnter", config = true },
 	{ "hrsh7th/cmp-nvim-lsp" },
 	{

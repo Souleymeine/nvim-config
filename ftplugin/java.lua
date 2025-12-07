@@ -1,5 +1,6 @@
 local home = os.getenv('HOME')
 local workspace_folder = home .. "/.local/share/eclipse/" .. vim.fn.fnamemodify(vim.fs.root(0, {'gradlew', '.git', 'mvnw'}), ":p:h:t")
+vim.print(workspace_folder)
 local config = {
 	cmd = {
 		'java', -- or '/path/to/java21_or_newer/bin/java'
@@ -13,7 +14,7 @@ local config = {
 		'--add-opens', 'java.base/java.util=ALL-UNNAMED',
 		'--add-opens', 'java.base/java.lang=ALL-UNNAMED',
 		'-jar',
-		'/home/souleymeine/.local/share/nvim/mason/packages/jdtls/plugins/org.eclipse.equinox.launcher_1.7.0.v20250519-0528.jar',
+		'/home/souleymeine/.local/share/nvim/mason/packages/jdtls/plugins/org.eclipse.equinox.launcher_1.7.100.v20251111-0406.jar',
 		'-configuration', '/home/souleymeine/.local/share/nvim/mason/packages/jdtls/config_linux',
 		-- See `data directory configuration` section in the README
 		'-data', workspace_folder
