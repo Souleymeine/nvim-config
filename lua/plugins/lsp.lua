@@ -35,7 +35,7 @@ return {
 		"mfussenegger/nvim-jdtls",
 		ft = { "java" },
 	},
-	{ "ziglang/zig.vim" },
+	{ "ziglang/zig.vim", ft="zig" },
 	{ "windwp/nvim-autopairs", event = "InsertEnter", config = true },
 	{ "hrsh7th/cmp-nvim-lsp" },
 	{
@@ -72,29 +72,6 @@ return {
 					{ name = "render-markdown" },
 				}),
 			})
-
-			-- Seems useless now? (+ causes trouble)
-			--
-			-- -- Set up lspconfig.
-			-- local capabilities = require('cmp_nvim_lsp').default_capabilities()
-			-- local lspconfig = require("lspconfig")
-			--
-			-- -- Lua specific stuff
-			-- -- Kind of ugly but works
-			-- local lua_ls_settings = {
-			-- 	Lua = {
-			-- 		diagnostics = { globals = { "vim" } },
-			-- 		workspace = { library = vim.api.nvim_get_runtime_file("", true) },
-			-- 		-- telemetry = { enable = false },
-			-- 	}
-			-- }
-			--
-			-- -- Setup each language server
-			-- -- for _, lsp in ipairs(require("mason-lspconfig").get_installed_servers()) do
-			-- -- 	local setup = { capabilities = capabilities }
-			-- -- 	if lsp == "lua_ls" then setup.settings = lua_ls_settings end
-			-- -- 	lspconfig[lsp].setup(setup)
-			-- -- end
 		end
 	},
 }

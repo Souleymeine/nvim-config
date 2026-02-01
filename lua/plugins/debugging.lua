@@ -28,16 +28,16 @@ return {
 		dap.listeners.before.event_exited.dapui_config = dapui.close
 
 		-- Debugger configuration
-		-- From https://codeberg.org/mfussenegger/nvim-dap/wiki/Debug-Adapter-installation#c-c-rust-via-gdb
-		dap.adapters.gdb = {
+		-- From https://codeberg.org/mfussenegger/nvim-dap/wiki/Debug-Adapter-installation#c-c-rust-via-lldb-vscode
+		dap.adapters.lldb = {
 			type = "executable",
-			command = "gdb",
-			args = { "--interpreter=dap", "--eval-command", "set print pretty on" }
+			command = "/usr/bin/lldb-dap",
+			name = "lldb"
 		}
 		dap.configurations.c = {
 			{
 				name = "Launch",
-				type = "gdb",
+				type = "lldb",
 				request = "launch",
 				program = function()
 					return vim.fn.input('Path to executable: ', './', 'file')
@@ -47,7 +47,7 @@ return {
 			},
 			{
 				name = "Launch with arguments",
-				type = "gdb",
+				type = "lldb",
 				request = "launch",
 				program = function()
 					return vim.fn.input('Path to executable: ', './', 'file')
@@ -60,47 +60,8 @@ return {
 			}
 		}
 
-		dap.adapters.bashdb = {
-			type = 'executable',
-			command = vim.fn.stdpath("data") .. '/mason/packages/bash-debug-adapter/bash-debug-adapter',
-			name = 'bashdb',
-		}
+		dap.configurations.zig = dap.configurations.c
 
-		dap.configurations.sh = {
-			{
-				type = 'bashdb',
-				request = 'launch',
-				name = "Launch file",
-				showDebugOutput = true,
-				pathBashdb = vim.fn.stdpath("data") .. '/mason/packages/bash-debug-adapter/extension/bashdb_dir/bashdb',
-				pathBashdbLib = vim.fn.stdpath("data") .. '/mason/packages/bash-debug-adapter/extension/bashdb_dir',
-				trace = true,
-				file = "${file}",
-				program = "${file}",
-				cwd = '${workspaceFolder}',
-				pathCat = "cat",
-				pathBash = "/bin/bash",
-				pathMkfifo = "mkfifo",
-				pathPkill = "pkill",
-				args = {},
-				argsString = '',
-				env = {},
-				terminalKind = "integrated",
-			}
-		}
-		dap.adapters.java = function(callback)
-			callback({
-				type = 'server',
-				host = '127.0.0.1',
-				port = port,
-			})
-		end
-		dap.configurations.java = {
-			{
-				request = "launch",
-				type = "java"
-			}
-		}
 		require("nvim-dap-virtual-text").setup()
 	end
 }
