@@ -28,11 +28,11 @@ return {
 		dap.listeners.before.event_exited.dapui_config = dapui.close
 
 		-- Debugger configuration
-		-- From https://codeberg.org/mfussenegger/nvim-dap/wiki/Debug-Adapter-installation#c-c-rust-via-lldb-vscode
+		-- https://codeberg.org/mfussenegger/nvim-dap/wiki/Debug-Adapter-installation#configuration-example
 		dap.adapters.lldb = {
-			type = "executable",
-			command = "/usr/bin/lldb-dap",
-			name = "lldb"
+			type = 'executable',
+			command = '/usr/bin/lldb-dap', -- must be absolute path
+			name = 'lldb'
 		}
 		dap.configurations.c = {
 			{
@@ -44,6 +44,8 @@ return {
 				end,
 				cwd = "${workspaceFolder}",
 				stopAtBeginningOfMainSubprogram = false,
+				console = "integratedTerminal",
+				initCommands = { "process handle SIGWINCH -p true -n false -s false" }, -- SIGWINCH causes the debugger to stop
 			},
 			{
 				name = "Launch with arguments",
@@ -57,6 +59,8 @@ return {
 				end,
 				cwd = "${workspaceFolder}",
 				stopAtBeginningOfMainSubprogram = false,
+				console = "integratedTerminal",
+				initCommands = { "process handle SIGWINCH -p true -n false -s false" },
 			}
 		}
 
