@@ -36,6 +36,11 @@ return {
 		ft = { "java" },
 	},
 	{ "ziglang/zig.vim", ft="zig" },
+	{ "rust-lang/rust.vim", ft="rust",
+		config = function ()
+			vim.g.rustfmt_autosave = 1
+		end
+	},
 	{ "windwp/nvim-autopairs", event = "InsertEnter", config = true },
 	{ "hrsh7th/cmp-nvim-lsp" },
 	{
