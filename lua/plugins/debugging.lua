@@ -55,7 +55,7 @@ return {
 					return vim.fn.input('Path to executable: ', './', 'file')
 				end,
 				args = function()
-					return vim.fn.input('Arguments: ')
+					return require("dap.utils").splitstr(vim.fn.input('Arguments: '))
 				end,
 				cwd = "${workspaceFolder}",
 				stopAtBeginningOfMainSubprogram = false,
