@@ -1,7 +1,4 @@
-local home = os.getenv('HOME')
-local workspace_folder = home .. "/.local/share/eclipse/" .. vim.fn.fnamemodify(vim.fs.root(0, {'gradlew', '.git', 'mvnw'}), ":p:h:t")
-vim.print(workspace_folder)
-local config = {
+require("jdtls").start_or_attach({
 	cmd = {
 		'java', -- or '/path/to/java21_or_newer/bin/java'
 		'-Declipse.application=org.eclipse.jdt.ls.core.id1',
@@ -9,24 +6,15 @@ local config = {
 		'-Declipse.product=org.eclipse.jdt.ls.core.product',
 		'-Dlog.protocol=true',
 		'-Dlog.level=ALL',
-		'-Xmx2G',
+		'-Xmx1G',
 		'--add-modules=ALL-SYSTEM',
 		'--add-opens', 'java.base/java.util=ALL-UNNAMED',
 		'--add-opens', 'java.base/java.lang=ALL-UNNAMED',
 		'-jar',
-		'/home/souleymeine/.local/share/nvim/mason/packages/jdtls/plugins/org.eclipse.equinox.launcher_1.7.100.v20251111-0406.jar',
-		'-configuration', '/home/souleymeine/.local/share/nvim/mason/packages/jdtls/config_linux',
+		'/usr/libexec/jdtls/plugins/org.eclipse.equinox.launcher_1.7.100.v20251111-0406.jar',
+		-- NOTE : the user should own thid directory, not root, because it attempts to write logs there
+		'-configuration', '/usr/share/jdtls/config_linux',
 		-- See `data directory configuration` section in the README
-		'-data', workspace_folder
+		'-data', os.getenv('HOME') .. "/.local/share/eclipse/" .. vim.fn.fnamemodify(vim.fs.root(0, {'gradlew', '.git', 'mvnw'}) or "./jdtls_cache", ":p:h:t")
 	},
-
-	-- 💀
-	-- This is the default if not provided, you can remove it. Or adjust as needed.
-	-- One dedicated LSP server & client will be started per unique root_dir
-	--
-	-- vim.fs.root requires Neovim 0.10.
-	-- If you're using an earlier version, use: require('jdtls.setup').find_root({'.git', 'mvnw', 'gradlew'}),
-	root_dir = vim.fs.root(0, { ".git", "mvnw", "gradlew" }),
-
-}
-require("jdtls").start_or_attach(config)
+})
