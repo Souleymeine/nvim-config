@@ -32,7 +32,8 @@ augroup END
 ]])
 -- No mouse buttons when using vim, duh!
 -- #larp
-vim.cmd("set mouse=")
+-- TODO : config dapui properly, unuable without mouse atm
+-- vim.cmd("set mouse=")
 
 -- Plugins --
 local function gh(path) return "https://github.com/" .. path end
@@ -60,9 +61,9 @@ vim.pack.add({
 
 vim.cmd([[
 colorscheme midnight
-hi Normal guibg=Black
-hi Pmenu guibg=Black
-hi PmenuBorder guifg=#222222
+"hi Normal guibg=Black
+"hi Pmenu guibg=Black
+"hi PmenuBorder guifg=#222222
 ]])
 -- Use default theme bg color for VisualNonText bg
 local theme_bg_hl = vim.api.nvim_get_hl(0, { name = "Visual" }).bg
@@ -83,12 +84,6 @@ require("ibl").setup({
 })
 require("oil").setup()
 require("mini.pick").setup({ delay = { async = 1, busy = 1 } })
-require("presence").setup({
-	neovim_image_text = "Terminal Text Editor",
-	main_image = "file",
-	file_explorer_text = "",
-	git_commit_text = ""
-})
 local dap, dapui = require("dap"), require("dapui")
 dapui.setup()
 local open_ui = function() dapui.open() end
@@ -188,3 +183,4 @@ vim.keymap.set('n', '<F10>', dap.step_over, {})
 vim.keymap.set('n', '<F11>', dap.step_into, {})
 vim.keymap.set('n', '<F12>', dap.step_out, {})
 vim.keymap.set('n', '<Leader>b', dap.toggle_breakpoint, {})
+vim.keymap.set('n', '<F4>', dapui.toggle, {})
